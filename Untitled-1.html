@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday!</title>
+  <style>
+    /* General Styles */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: black;
+      font-family: Arial, sans-serif;
+      color: purple;
+      overflow: hidden;
+    }
+
+    h1, p {
+      color: purple;
+    }
+
+    /* Page 1 - Gift Box */
+    #gift-box-page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .gift-box {
+      width: 100px;
+      height: 100px;
+      background: purple;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .gift-box::before, .gift-box::after {
+      content: "";
+      position: absolute;
+      background: white;
+    }
+
+    .gift-box::before {
+      width: 100%;
+      height: 20px;
+      top: 40%;
+    }
+
+    .gift-box::after {
+      width: 20px;
+      height: 100%;
+      left: 40%;
+    }
+
+    /* Heart Animation */
+    #heart-page {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .heart {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      transform: rotate(-45deg);
+      animation: pulse 1s infinite;
+    }
+
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -50px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 50px;
+      top: 0;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1) rotate(-45deg); }
+      50% { transform: scale(1.1) rotate(-45deg); }
+    }
+
+    /* Page 2 - Catch the Heart Game */
+    #game-page {
+      display: none;
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(to bottom right, pink, purple);
+      overflow: hidden;
+      text-align: center;
+    }
+
+    #game-title {
+      color: purple;
+      font-size: 2em;
+      margin-top: 20px;
+    }
+
+    #score {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: purple;
+      font-size: 1.5em;
+    }
+
+    /* Game Heart Shape */
+    .game-heart {
+      position: relative;
+      width: 50px;
+      height: 50px;
+      background-color: red;
+      transform: rotate(-45deg);
+      cursor: pointer;
+    }
+
+    .game-heart::before, .game-heart::after {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: red;
+      border-radius: 50%;
+    }
+
+    .game-heart::before {
+      top: -25px;
+      left: 0;
+    }
+
+    .game-heart::after {
+      left: 25px;
+      top: 0;
+    }
+
+    /* Page 3 - Final Page with Gift Box */
+    #final-page {
+      display: none;
+      background: black;
+      color: purple;
+      text-align: center;
+      padding: 20px;
+      width: 100%;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .final-gift-box {
+      width: 100px;
+      height: 100px;
+      background: purple;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .final-gift-box::before, .final-gift-box::after {
+      content: "";
+      position: absolute;
+      background: white;
+    }
+
+    .final-gift-box::before {
+      width: 100%;
+      height: 20px;
+      top: 40%;
+    }
+
+    .final-gift-box::after {
+      width: 20px;
+      height: 100%;
+      left: 40%;
+    }
+
+    .photos {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .photos img {
+      width: 100px;
+      height: 100px;
+      border-radius: 10px;
+    }
+
+    .signature {
+      margin-top: 20px;
+      width: 150px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page 1: Gift Box to Trigger Fireworks and Heart Animation -->
+  <div id="gift-box-page">
+    <div class="gift-box" onclick="showHeartAndFireworks()"></div>
+  </div>
+
+  <!-- Page 1: Heart and Fireworks Animation -->
+  <div id="heart-page">
+    <div class="heart"></div>
+  </div>
+
+  <!-- Page 2: Catch the Heart Game -->
+  <div id="game-page">
+    <h2 id="game-title">Catch My Love</h2>
+    <div id="score">Score: 0</div>
+    <div class="game-heart" onclick="catchHeart()" style="left: 50%; top: 50%;"></div>
+  </div>
+
+  <!-- Page 3: Final Greeting Page with Gift Box -->
+  <div id="final-page">
+    <h1>Happy Birthday, My Love!</h1>
+    <p>Dear [Your Wife's Name],</p>
+    <p>
+      On this special day, I want to tell you how much you mean to me. Every moment with you is a cherished memory.
+      I love you more with every passing day, and I'm grateful for all the joy and love you've brought into my life.
+    </p>
+    <div class="photos">
+      <img src="https://drive.google.com/file/d/1-P4QsvX-Lrt6H_KURuE57kod-CDIHyOz/view?usp=drivesdk" alt="Photo 1">
+      <img src=".\image_assets\first_pic.webp" alt="Photo 2">
+      <img src=".\image_assets\pic_at_kollam .webp"alt="Photo 3">
+      <img src=".\image_assets\last_pic.webp" alt="Photo 4">
+      <img src=".\image_assets\last_handshake.webp" alt="Photo 5">
+    </div>
+    <p>Forever yours,</p>
+    <img src=".\image_assets\signature.webp" alt="Your Signature" class="signature">
+    <div class="final-gift-box" onclick="playBackgroundMusic()"></div>
+  </div>
+
+  <audio id="fireworks-sound" src="audio_assets\firework_sound.mp3"preload="auto" playsinline></audio>
+  <audio id="background-music" src="audio_assets\bg_song.mp3" loop preload="auto" playsinline></audio>
+
+  <script>
+    let isAudioAllowed = false;
+
+    document.addEventListener('click', allowAudio);
+    document.addEventListener('touchstart', allowAudio);
+
+    function allowAudio() {
+      isAudioAllowed = true;
+      document.removeEventListener('click', allowAudio);
+      document.removeEventListener('touchstart', allowAudio);
+    }
+
+    function playFireworksSound() {
+      if (isAudioAllowed) {
+        const fireworksSound = document.getElementById("fireworks-sound");
+        fireworksSound.play().catch(error => console.error("Fireworks sound error:", error));
+      }
+    }
+
+    function showHeartAndFireworks() {
+      document.getElementById('gift-box-page').style.display = 'none';
+      document.getElementById('heart-page').style.display = 'flex';
+      playFireworksSound();
+      setTimeout(() => {
+        document.getElementById('heart-page').style.display = 'none';
+        document.getElementById('game-page').style.display = 'block';
+      }, 9000); // Transition to game after 3 seconds
+    }
+
+    function playBackgroundMusic() {
+      if (isAudioAllowed) {
+        const backgroundMusic = document.getElementById("background-music");
+        backgroundMusic.play().catch(error => console.error("Background music error:", error));
+      }
+    }
+
+    // Game logic to catch the heart and increase score
+    let score = 0;
+    function catchHeart() {
+      score++;
+      document.getElementById("score").innerText = "Score: " + score;
+
+      const heart = document.querySelector(".game-heart");
+      heart.style.top = Math.random() * 80 + "%";
+      heart.style.left = Math.random() * 80 + "%";
+
+      if (score >= 10) {
+        document.getElementById("game-page").style.display = "none";
+        document.getElementById("final-page").style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
